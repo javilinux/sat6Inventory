@@ -246,7 +246,7 @@ incompliant = {}
 
 for system in systemdata:
     sysdetailedurl = "https://" + satellite + "/katello/api/v2/systems/" + system["uuid"] + "?fields=full"
-    subdetailedurl = "https://" + satellite + "/katello/api/v2/systems/" + system["uuid"] + "/subscriptions"
+    subdetailedurl = "https://" + satellite + "/api/v2/hosts/" + str(system["host_id"]) + "/subscriptions"
     hostdetailedurl = "https://" + satellite + "/api/v2/hosts/" + system["name"] + "/facts?per_page=99999"
 
     if VERBOSE:
@@ -302,7 +302,7 @@ for system in systemdata:
 
         # Get the Amount of subs
         subName = entitlement['product_name']
-        host_info['amount'] = entitlement['amount']
+        host_info['amount'] = entitlement['quantity_consumed']
         host_info['entitlement'] = entitlement['product_name']
         host_info['entitlements'] = entitlement['product_name']
         host_info['organization'] = orgid
